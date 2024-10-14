@@ -2,6 +2,7 @@ package org.example;
 // CA1
 import java.io. * ;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -19,11 +20,12 @@ public class Main {
         // Assignment: Implement and test the following methods.
         // See the description of each method in the CA1 Specification PDF file from Moodle
 
-//        getPassengerNames();
-//        getPassengersContainingNames();
-//        getPassengersOlderThan();
-//        countPassengersByGender();
-//        sumFares();
+        System.out.println("\n" + Arrays.toString(getPassengerNames(passengerList)));
+        System.out.println("\n" + getPassengersContainingName(passengerList,"William"));
+        System.out.println("\n" + getPassengersOlderThan(passengerList,70));;
+        System.out.println("\n" + countPassengersByGender(passengerList,"male"));
+        System.out.println("\n" + sumFares(passengerList));
+
 //        maleSurvivors();
 //        ticketOwner();
 //        averageAge();
@@ -106,5 +108,68 @@ public class Main {
         {
             System.out.println(passenger);
         }
+    }
+
+    public static String[] getPassengerNames(ArrayList<Passenger> passengerList) {
+        String [] passengerArray = new String[passengerList.size()];
+        for(int i=0;i<passengerList.size();i++) {
+            Passenger passenger = passengerList.get(i);
+            passengerArray[i] = passenger.getName();
+        }
+        return passengerArray;
+    }
+
+    public static ArrayList<Passenger> getPassengersContainingName(ArrayList<Passenger> passengerList, String name) {
+        ArrayList<Passenger> containsNameList = new ArrayList<>();
+        for(Passenger passenger : passengerList) {
+            if (passenger.getName().contains(name)) {
+                containsNameList.add(passenger);
+            }
+        }
+        return containsNameList;
+    }
+
+    public static ArrayList<Passenger> getPassengersOlderThan(ArrayList<Passenger> passengerList, int age) {
+        ArrayList<Passenger> containsAgeList = new ArrayList<>();
+        for(Passenger passenger : passengerList) {
+            if (passenger.getAge()>age) {
+                containsAgeList.add(passenger);
+            }
+        }
+        return containsAgeList;
+    }
+
+    public static ArrayList<Passenger> countPassengersByGender(ArrayList<Passenger> passengerList, String gender) {
+        ArrayList<Passenger> genderList = new ArrayList<>();
+        for(Passenger passenger : passengerList) {
+            if ((passenger.getGender()).equals(gender)) {
+                genderList.add(passenger);
+            }
+        }
+        return genderList;
+    }
+
+    public static double sumFares(ArrayList<Passenger> passengerList) {
+        double total = 0;
+        for(Passenger passenger : passengerList) {
+            total += passenger.getFare();
+        }
+        return total;
+    }
+
+    public static String[] maleSurvivors(ArrayList<Passenger> passengerList) {
+        ArrayList<Passenger> maleSurvivedList = new ArrayList<>();
+        for(Passenger passenger : passengerList) {
+            if ((passenger.getGender()).equalsIgnoreCase("male") && passenger.getSurvived()==1) {
+                maleSurvivedList.add(passenger);
+            }
+        }
+        String [] maleSurvivedArr = new String[maleSurvivedList.size()];
+
+        for(int i=0;i<maleSurvivedList.size();i++) {
+            Passenger passenger = passengerList.get(i);
+            maleSurvivedArr[i] = passenger.getName();
+        }
+        return maleSurvivedArr;
     }
 }
