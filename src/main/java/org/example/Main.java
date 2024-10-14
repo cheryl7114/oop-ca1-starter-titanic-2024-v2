@@ -22,13 +22,13 @@ public class Main {
 
         System.out.println("\n" + Arrays.toString(getPassengerNames(passengerList)));
         System.out.println("\n" + getPassengersContainingName(passengerList,"William"));
-        System.out.println("\n" + getPassengersOlderThan(passengerList,70));;
+        System.out.println("\n" + getPassengersOlderThan(passengerList,70));
         System.out.println("\n" + countPassengersByGender(passengerList,"male"));
         System.out.println("\n" + sumFares(passengerList));
         System.out.println("\n" + Arrays.toString(maleSurvivors(passengerList)));
+        System.out.println("\n" + ticketOwner(passengerList,"A/4. 39886"));
+        System.out.println("\n" + averageAge(passengerList));
 
-//        ticketOwner();
-//        averageAge();
 //        getPassengersByTicketClass();
 //        sortPassengersByPassengerId()
 //        sortPassengersByName();
@@ -165,10 +165,23 @@ public class Main {
             }
         }
 
-        return maleSurvivedList.toArray(new String[maleSurvivedList.size()]);
+        return maleSurvivedList.toArray(new String[0]);
     }
 
-//    public static Passenger ticketOwner(ArrayList<Passenger> passengerList, String ticketNo) {
-//
-//    }
+    public static Passenger ticketOwner(ArrayList<Passenger> passengerList, String ticketNo) {
+        for(Passenger passenger : passengerList) {
+            if (passenger.getTicketNumber().equals(ticketNo)) {
+                return passenger;
+            }
+        }
+        return null;
+    }
+
+    public static double averageAge(ArrayList<Passenger> passengerList) {
+        double total = 0;
+        for(Passenger passenger : passengerList) {
+            total += passenger.getAge();
+        }
+        return total/passengerList.size();
+    }
 }
