@@ -25,8 +25,8 @@ public class Main {
         System.out.println("\n" + getPassengersOlderThan(passengerList,70));;
         System.out.println("\n" + countPassengersByGender(passengerList,"male"));
         System.out.println("\n" + sumFares(passengerList));
+        System.out.println("\n" + Arrays.toString(maleSurvivors(passengerList)));
 
-//        maleSurvivors();
 //        ticketOwner();
 //        averageAge();
 //        getPassengersByTicketClass();
@@ -158,18 +158,17 @@ public class Main {
     }
 
     public static String[] maleSurvivors(ArrayList<Passenger> passengerList) {
-        ArrayList<Passenger> maleSurvivedList = new ArrayList<>();
+        ArrayList<String> maleSurvivedList = new ArrayList<>();
         for(Passenger passenger : passengerList) {
             if ((passenger.getGender()).equalsIgnoreCase("male") && passenger.getSurvived()==1) {
-                maleSurvivedList.add(passenger);
+                maleSurvivedList.add(passenger.getName());
             }
         }
-        String [] maleSurvivedArr = new String[maleSurvivedList.size()];
 
-        for(int i=0;i<maleSurvivedList.size();i++) {
-            Passenger passenger = passengerList.get(i);
-            maleSurvivedArr[i] = passenger.getName();
-        }
-        return maleSurvivedArr;
+        return maleSurvivedList.toArray(new String[maleSurvivedList.size()]);
     }
+
+//    public static Passenger ticketOwner(ArrayList<Passenger> passengerList, String ticketNo) {
+//
+//    }
 }
