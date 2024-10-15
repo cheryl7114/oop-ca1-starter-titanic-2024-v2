@@ -1,6 +1,6 @@
 package org.example;
 //ca1
-public class Passenger {
+public class Passenger implements Comparable<Passenger>{
     private String passengerId;    // passenger number
     private int survived;           // 0=false, 1=true
     private PassengerClass passengerClass;  // passenger class, 1=1st, 2=2nd or 3rd class
@@ -153,5 +153,11 @@ public class Passenger {
 
     public void setEmbarkedAt(String embarkedAt) {
         this.embarkedAt = embarkedAt;
+    }
+
+    @Override
+    public int compareTo(Passenger otherPassenger) {
+        // Compare passengers based on their passengerId
+        return Integer.compare(Integer.parseInt(this.passengerId), Integer.parseInt(otherPassenger.passengerId));
     }
 }

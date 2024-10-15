@@ -1,9 +1,7 @@
 package org.example;
 // CA1
 import java.io. * ;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,12 +25,12 @@ public class Main {
         System.out.println("\n" + sumFares(passengerList));
         System.out.println("\n" + Arrays.toString(maleSurvivors(passengerList)));
         System.out.println("\n" + ticketOwner(passengerList,"A/4. 39886"));
+        System.out.println("\n" + averageAge(passengerList));
         System.out.println("\n" + getPassengersByTicketClass(passengerList,PassengerClass.FIRST));
+        System.out.println("\n" + sortPassengersByPassengerId(passengerList));
 
-//        getPassengersByTicketClass();
-//        sortPassengersByPassengerId()
 //        sortPassengersByName();
-//        sortPassengersByAgeThenName();
+//        sortPassengersByAgeThenName();2
 //        sortPassengersByGenderThenPassengerNumber()
 //        sortPassengersByFareThenSurvival();
 //        sortPassengersByTicketClass()
@@ -193,5 +191,11 @@ public class Main {
             }
         }
         return ticketClassList;
+    }
+
+    public static ArrayList<Passenger> sortPassengersByPassengerId(ArrayList<Passenger> passengerList) {
+        ArrayList<Passenger> sortedByID = new ArrayList<>(passengerList);
+        Collections.sort(sortedByID);
+        return sortedByID;
     }
 }
