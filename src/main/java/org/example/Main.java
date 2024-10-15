@@ -5,7 +5,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
         String fileName = "titanic-data-100.csv"; // file should be in the project folder (below pom.xml)
 
         ArrayList<Passenger> passengerList= new ArrayList<>();
@@ -35,8 +34,8 @@ public class Main {
         System.out.println("\n" + sortPassengersByTicketClass(passengerList));
         System.out.println("\n" + sortPassengersByAge(passengerList));
         System.out.println("\n" + sortPassengersByTicketNumberLambda(passengerList));
+        System.out.println("\n" + sortPassengersByTicketNumberStatic(passengerList));
 
-//        sortPassengersByTicketNumberStatic();
 //        findPassengerByTicketNumber();
 //        findPassengerByPassengerId();
 
@@ -267,4 +266,30 @@ public class Main {
         passengerList.sort((p1, p2) -> p1.getTicketNumber().compareTo(p2.getTicketNumber()));
         return passengerList;
     }
+
+    public static ArrayList<Passenger> sortPassengersByTicketNumberStatic(ArrayList<Passenger> passengerList) {
+        passengerList.sort(Passenger.ticketNumberComparator());
+        Collections.sort(passengerList, Passenger.ticketNumberComparator());
+
+        return passengerList;
+    }
+
+    public static Passenger findPassengerByTicketNumber(ArrayList<Passenger> passengerList, String ticketNumber) {
+        Collections.sort(passengerList, Passenger.ticketNumberComparator());
+
+        // create a key Passenger with only the ticketNumber set for binary search comparison
+        Passenger keyToFind = new Passenger();
+        keyToFind.setTicketNumber(ticketNumber);
+
+        // Step 3: Use binary search to find the index of the passenger with the matching ticket number
+        int index = Collections.binarySearch(passengerList, keyToFind, Comparator.comparing(Passenger::getTicketNumber));
+
+        // Step 4: Check the result of binary search
+        if (index >= 0) {
+            return passengerList.get(index); // Passenger found
+        } else {
+            return null; // Passenger not found
+        }
+    }
+
 }

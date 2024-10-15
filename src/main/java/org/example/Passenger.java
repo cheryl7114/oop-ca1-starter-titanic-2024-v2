@@ -43,6 +43,10 @@ public class Passenger implements Comparable<Passenger> {
         this.embarkedAt = embarkedAt;
     }
 
+    public Passenger() {
+
+    }
+
     @Override
     public String toString() {
         return "Passenger{" +
@@ -161,5 +165,10 @@ public class Passenger implements Comparable<Passenger> {
     public int compareTo(Passenger otherPassenger) {
         // based on passengerId
         return Integer.compare(Integer.parseInt(this.passengerId), Integer.parseInt(otherPassenger.passengerId));
+    }
+
+    public static Comparator<Passenger> ticketNumberComparator() {
+        // foreach Passenger object, the getTicketNumber() method will be called to get their ticket number
+        return Comparator.comparing(Passenger::getTicketNumber);
     }
 }
