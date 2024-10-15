@@ -29,10 +29,11 @@ public class Main {
         System.out.println("\n" + getPassengersByTicketClass(passengerList,PassengerClass.FIRST));
         System.out.println("\n" + sortPassengersByPassengerId(passengerList));
         System.out.println("\n" + sortPassengersByName(passengerList));
+        System.out.println("\n" + sortPassengersByAgeThenName(passengerList));
         System.out.println("\n" + sortPassengersByGenderThenPassengerNumber(passengerList));
+        System.out.println("\n" + sortPassengersByFareThenSurvival(passengerList));
+        System.out.println("\n" + sortPassengersByTicketClass(passengerList));
 
-//        sortPassengersByFareThenSurvival();
-//        sortPassengersByTicketClass()
 //        sortPassengersByAge();
 //        sortPassengersByTicketNumberLambda();
 //        sortPassengersByTicketNumberStatic();
@@ -230,4 +231,27 @@ public class Main {
 
         return passengerList;
     }
+
+    public static ArrayList<Passenger> sortPassengersByFareThenSurvival(ArrayList<Passenger> passengerList) {
+        passengerList.sort((p1, p2) -> {
+            int fareComparison = Double.compare(p1.getFare(), p2.getFare());
+            // If genders are the same, compare by survival
+            if (fareComparison == 0) {
+                return Integer.compare(p2.getSurvived(),p1.getSurvived());
+            }
+            return fareComparison;
+        });
+
+        return passengerList;
+    }
+
+    public static ArrayList<Passenger> sortPassengersByTicketClass(ArrayList<Passenger> passengerList) {
+        passengerList.sort(Comparator.comparingInt(p -> p.getPassengerClass().ordinal()));
+//        passengerList.sort((p1, p2) -> {
+//            return Integer.compare(p1.getPassengerClass().ordinal(), p2.getPassengerClass().ordinal());
+//        });
+        return passengerList;
+    }
+
+
 }
