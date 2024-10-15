@@ -27,7 +27,7 @@ public class Main {
         System.out.println("\n" + sumFares(passengerList));
         System.out.println("\n" + Arrays.toString(maleSurvivors(passengerList)));
         System.out.println("\n" + ticketOwner(passengerList,"A/4. 39886"));
-        System.out.println("\n" + averageAge(passengerList));
+        System.out.println("\n" + getPassengersByTicketClass(passengerList,PassengerClass.FIRST));
 
 //        getPassengersByTicketClass();
 //        sortPassengersByPassengerId()
@@ -183,5 +183,15 @@ public class Main {
             total += passenger.getAge();
         }
         return total/passengerList.size();
+    }
+
+    public static ArrayList<Passenger> getPassengersByTicketClass(ArrayList<Passenger> passengerList, PassengerClass passengerClass) {
+        ArrayList<Passenger> ticketClassList = new ArrayList<>();
+        for(Passenger passenger : passengerList) {
+            if (passenger.getPassengerClass()==passengerClass) {
+                ticketClassList.add(passenger);
+            }
+        }
+        return ticketClassList;
     }
 }
