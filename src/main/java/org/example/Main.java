@@ -33,9 +33,9 @@ public class Main {
         System.out.println("\n" + sortPassengersByGenderThenPassengerNumber(passengerList));
         System.out.println("\n" + sortPassengersByFareThenSurvival(passengerList));
         System.out.println("\n" + sortPassengersByTicketClass(passengerList));
+        System.out.println("\n" + sortPassengersByAge(passengerList));
+        System.out.println("\n" + sortPassengersByTicketNumberLambda(passengerList));
 
-//        sortPassengersByAge();
-//        sortPassengersByTicketNumberLambda();
 //        sortPassengersByTicketNumberStatic();
 //        findPassengerByTicketNumber();
 //        findPassengerByPassengerId();
@@ -253,5 +253,18 @@ public class Main {
         return passengerList;
     }
 
+    public static ArrayList<Passenger> sortPassengersByAge(ArrayList<Passenger> passengerList) {
+        passengerList.sort(new Comparator<Passenger>() {
+            @Override
+            public int compare(Passenger p1, Passenger p2) {
+                return Integer.compare(p1.getAge(), p2.getAge());
+            }
+        });
+        return passengerList;
+    }
 
+    public static ArrayList<Passenger> sortPassengersByTicketNumberLambda(ArrayList<Passenger> passengerList) {
+        passengerList.sort((p1, p2) -> p1.getTicketNumber().compareTo(p2.getTicketNumber()));
+        return passengerList;
+    }
 }
