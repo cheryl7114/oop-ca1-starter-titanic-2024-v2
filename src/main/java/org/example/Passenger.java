@@ -1,6 +1,9 @@
 package org.example;
+
+import java.util.Comparator;
+
 //ca1
-public class Passenger implements Comparable<Passenger>{
+public class Passenger implements Comparable<Passenger> {
     private String passengerId;    // passenger number
     private int survived;           // 0=false, 1=true
     private PassengerClass passengerClass;  // passenger class, 1=1st, 2=2nd or 3rd class

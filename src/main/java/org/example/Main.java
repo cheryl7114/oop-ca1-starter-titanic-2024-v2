@@ -28,10 +28,9 @@ public class Main {
         System.out.println("\n" + averageAge(passengerList));
         System.out.println("\n" + getPassengersByTicketClass(passengerList,PassengerClass.FIRST));
         System.out.println("\n" + sortPassengersByPassengerId(passengerList));
+        System.out.println("\n" + sortPassengersByName(passengerList));
+        System.out.println("\n" + sortPassengersByGenderThenPassengerNumber(passengerList));
 
-//        sortPassengersByName();
-//        sortPassengersByAgeThenName();2
-//        sortPassengersByGenderThenPassengerNumber()
 //        sortPassengersByFareThenSurvival();
 //        sortPassengersByTicketClass()
 //        sortPassengersByAge();
@@ -124,6 +123,7 @@ public class Main {
                 containsNameList.add(passenger);
             }
         }
+
         return containsNameList;
     }
 
@@ -197,5 +197,37 @@ public class Main {
         ArrayList<Passenger> sortedByID = new ArrayList<>(passengerList);
         Collections.sort(sortedByID);
         return sortedByID;
+    }
+
+    public static ArrayList<Passenger> sortPassengersByName(ArrayList<Passenger> passengerList) {
+        ArrayList<Passenger> sortedByName = new ArrayList<>(passengerList);
+         sortedByName.sort(Comparator.comparing(Passenger::getName)); //sortedByName.sort((p1, p2) -> p1.getName().compareTo(p2.getName()));
+        return sortedByName;
+    }
+
+    public static ArrayList<Passenger> sortPassengersByAgeThenName(ArrayList<Passenger> passengerList) {
+        passengerList.sort((p1, p2) -> {
+            int ageComparison = Integer.compare(p1.getAge(), p2.getAge());
+            // If ages are the same, compare by name
+            if (ageComparison == 0) {
+                return p1.getName().compareTo(p2.getName());
+            }
+            return ageComparison;
+        });
+
+        return passengerList;
+    }
+
+    public static ArrayList<Passenger> sortPassengersByGenderThenPassengerNumber(ArrayList<Passenger> passengerList) {
+        passengerList.sort((p1, p2) -> {
+            int genderComparison = p1.getGender().compareTo(p2.getGender());
+            // If genders are the same, compare by passenger ID
+            if (genderComparison == 0) {
+                return p1.compareTo(p2);
+            }
+            return genderComparison;
+        });
+
+        return passengerList;
     }
 }
