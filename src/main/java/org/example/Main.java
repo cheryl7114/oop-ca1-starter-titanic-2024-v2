@@ -17,26 +17,26 @@ public class Main {
         // Assignment: Implement and test the following methods.
         // See the description of each method in the CA1 Specification PDF file from Moodle
 
-        System.out.println("\n" + Arrays.toString(getPassengerNames(passengerList)));
-        System.out.println("\n" + getPassengersContainingName(passengerList,"William"));
-        System.out.println("\n" + getPassengersOlderThan(passengerList,70));
-        System.out.println("\n" + countPassengersByGender(passengerList,"male"));
-        System.out.println("\n" + sumFares(passengerList));
-        System.out.println("\n" + Arrays.toString(maleSurvivors(passengerList)));
-        System.out.println("\n" + ticketOwner(passengerList,"A/4. 39886"));
-        System.out.println("\n" + averageAge(passengerList));
-        System.out.println("\n" + getPassengersByTicketClass(passengerList,PassengerClass.FIRST));
-        System.out.println("\n" + sortPassengersByPassengerId(passengerList));
-        System.out.println("\n" + sortPassengersByName(passengerList));
-        System.out.println("\n" + sortPassengersByAgeThenName(passengerList));
-        System.out.println("\n" + sortPassengersByGenderThenPassengerNumber(passengerList));
-        System.out.println("\n" + sortPassengersByFareThenSurvival(passengerList));
-        System.out.println("\n" + sortPassengersByTicketClass(passengerList));
-        System.out.println("\n" + sortPassengersByAge(passengerList));
-        System.out.println("\n" + sortPassengersByTicketNumberLambda(passengerList));
-        System.out.println("\n" + sortPassengersByTicketNumberStatic(passengerList));
-        System.out.println("\n" + findPassengerByTicketNumber(passengerList,"STON/O2. 3101282"));
-        System.out.println("\n" + findPassengerByPassengerId(passengerList,"100"));
+        System.out.println("\n1. " + Arrays.toString(getPassengerNames(passengerList)));
+        System.out.println("\n2. " + getPassengersContainingName(passengerList,"William"));
+        System.out.println("\n3. " + getPassengersOlderThan(passengerList,70));
+        System.out.println("\n4. " + countPassengersByGender(passengerList,"male"));
+        System.out.println("\n5. " + sumFares(passengerList));
+        System.out.println("\n6. " + Arrays.toString(maleSurvivors(passengerList)));
+        System.out.println("\n7. " + ticketOwner(passengerList,"A/4. 39886"));
+        System.out.println("\n8. " + averageAge(passengerList));
+        System.out.println("\n9. " + getPassengersByTicketClass(passengerList,PassengerClass.FIRST));
+        System.out.println("\n10. " + sortPassengersByPassengerId(passengerList));
+        System.out.println("\n11. " + sortPassengersByName(passengerList));
+        System.out.println("\n12. " + sortPassengersByAgeThenName(passengerList));
+        System.out.println("\n13. " + sortPassengersByGenderThenPassengerNumber(passengerList));
+        System.out.println("\n14. " + sortPassengersByFareThenSurvival(passengerList));
+        System.out.println("\n15. " + sortPassengersByTicketClass(passengerList));
+        System.out.println("\n16. " + sortPassengersByAge(passengerList));
+        System.out.println("\n17. " + sortPassengersByTicketNumberLambda(passengerList));
+        System.out.println("\n18. " + sortPassengersByTicketNumberStatic(passengerList));
+        System.out.println("\n19. " + findPassengerByTicketNumber(passengerList,"STON/O2. 3101282"));
+        System.out.println("\n20. " + findPassengerByPassengerId(passengerList,"100"));
 
         System.out.println("Finished, Goodbye!");
     }
