@@ -35,9 +35,8 @@ public class Main {
         System.out.println("\n" + sortPassengersByAge(passengerList));
         System.out.println("\n" + sortPassengersByTicketNumberLambda(passengerList));
         System.out.println("\n" + sortPassengersByTicketNumberStatic(passengerList));
-
-//        findPassengerByTicketNumber();
-//        findPassengerByPassengerId();
+        System.out.println("\n" + findPassengerByTicketNumber(passengerList,"STON/O2. 3101282"));
+        System.out.println("\n" + findPassengerByPassengerId(passengerList,"100"));
 
         System.out.println("Finished, Goodbye!");
     }
@@ -201,54 +200,28 @@ public class Main {
 
     public static ArrayList<Passenger> sortPassengersByName(ArrayList<Passenger> passengerList) {
         ArrayList<Passenger> sortedByName = new ArrayList<>(passengerList);
-         sortedByName.sort(Comparator.comparing(Passenger::getName)); //sortedByName.sort((p1, p2) -> p1.getName().compareTo(p2.getName()));
+        sortedByName.sort(Comparator.comparing(Passenger::getName)); //sortedByName.sort((p1, p2) -> p1.getName().compareTo(p2.getName()));
         return sortedByName;
     }
 
     public static ArrayList<Passenger> sortPassengersByAgeThenName(ArrayList<Passenger> passengerList) {
-        passengerList.sort((p1, p2) -> {
-            int ageComparison = Integer.compare(p1.getAge(), p2.getAge());
-            // If ages are the same, compare by name
-            if (ageComparison == 0) {
-                return p1.getName().compareTo(p2.getName());
-            }
-            return ageComparison;
-        });
-
+//        Collections.sort(passengerList, new AgeThenNameComparator());
+        passengerList.sort(new AgeThenNameComparator());
         return passengerList;
     }
 
     public static ArrayList<Passenger> sortPassengersByGenderThenPassengerNumber(ArrayList<Passenger> passengerList) {
-        passengerList.sort((p1, p2) -> {
-            int genderComparison = p1.getGender().compareTo(p2.getGender());
-            // If genders are the same, compare by passenger ID
-            if (genderComparison == 0) {
-                return p1.compareTo(p2);
-            }
-            return genderComparison;
-        });
-
+        passengerList.sort(new GenderThenPassengerNumComparator());
         return passengerList;
     }
 
     public static ArrayList<Passenger> sortPassengersByFareThenSurvival(ArrayList<Passenger> passengerList) {
-        passengerList.sort((p1, p2) -> {
-            int fareComparison = Double.compare(p1.getFare(), p2.getFare());
-            // If genders are the same, compare by survival
-            if (fareComparison == 0) {
-                return Integer.compare(p2.getSurvived(),p1.getSurvived());
-            }
-            return fareComparison;
-        });
-
+        passengerList.sort(new FareThenSurvivalComparator());
         return passengerList;
     }
 
     public static ArrayList<Passenger> sortPassengersByTicketClass(ArrayList<Passenger> passengerList) {
-        passengerList.sort(Comparator.comparingInt(p -> p.getPassengerClass().ordinal()));
-//        passengerList.sort((p1, p2) -> {
-//            return Integer.compare(p1.getPassengerClass().ordinal(), p2.getPassengerClass().ordinal());
-//        });
+        passengerList.sort(new TicketClassComparator());
         return passengerList;
     }
 
@@ -268,27 +241,43 @@ public class Main {
     }
 
     public static ArrayList<Passenger> sortPassengersByTicketNumberStatic(ArrayList<Passenger> passengerList) {
-        passengerList.sort(Passenger.ticketNumberComparator());
-        Collections.sort(passengerList, Passenger.ticketNumberComparator());
+//        passengerList.sort(Passenger.ticketNumberComparator);
+        Collections.sort(passengerList, Passenger.ticketNumberComparator);
 
         return passengerList;
     }
 
     public static Passenger findPassengerByTicketNumber(ArrayList<Passenger> passengerList, String ticketNumber) {
-        Collections.sort(passengerList, Passenger.ticketNumberComparator());
+        Collections.sort(passengerList, Passenger.ticketNumberComparator);
 
-        // create a key Passenger with only the ticketNumber set for binary search comparison
+        // create a key with only the ticketNumber set for binary search comparison
         Passenger keyToFind = new Passenger();
         keyToFind.setTicketNumber(ticketNumber);
 
-        // Step 3: Use binary search to find the index of the passenger with the matching ticket number
+        // use binary search to find the index of the passenger with the matching ticket number
         int index = Collections.binarySearch(passengerList, keyToFind, Comparator.comparing(Passenger::getTicketNumber));
 
-        // Step 4: Check the result of binary search
         if (index >= 0) {
-            return passengerList.get(index); // Passenger found
+            return passengerList.get(index); // found passenger
         } else {
-            return null; // Passenger not found
+            return null;
+        }
+    }
+
+    public static Passenger findPassengerByPassengerId(ArrayList<Passenger> passengerList, String passID) {
+        Collections.sort(passengerList);
+
+        // create a key with only the passengerID set for binary search comparison
+        Passenger keyToFind = new Passenger();
+        keyToFind.setPassengerId(passID);
+
+        // use binary search to find the index of the passenger with the matching passengerID
+        int index = Collections.binarySearch(passengerList, keyToFind, Comparator.comparingInt(p -> Integer.parseInt(p.getPassengerId())));
+
+        if (index >= 0) {
+            return passengerList.get(index); // found passenger
+        } else {
+            return null;
         }
     }
 

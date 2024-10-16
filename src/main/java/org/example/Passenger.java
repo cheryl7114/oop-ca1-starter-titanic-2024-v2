@@ -163,12 +163,14 @@ public class Passenger implements Comparable<Passenger> {
 
     @Override
     public int compareTo(Passenger otherPassenger) {
-        // based on passengerId
+        // default ordering based on passengerId
         return Integer.compare(Integer.parseInt(this.passengerId), Integer.parseInt(otherPassenger.passengerId));
     }
 
-    public static Comparator<Passenger> ticketNumberComparator() {
-        // foreach Passenger object, the getTicketNumber() method will be called to get their ticket number
-        return Comparator.comparing(Passenger::getTicketNumber);
-    }
+    public static Comparator<Passenger> ticketNumberComparator = new Comparator<Passenger>() {
+        @Override
+        public int compare(Passenger p1, Passenger p2) {
+            return p1.getTicketNumber().compareTo(p2.getTicketNumber());
+        }
+    };
 }
