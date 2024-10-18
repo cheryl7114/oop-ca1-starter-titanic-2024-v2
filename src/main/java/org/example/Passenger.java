@@ -164,6 +164,7 @@ public class Passenger implements Comparable<Passenger> {
     @Override
     public int compareTo(Passenger otherPassenger) {
         // default ordering based on passengerId
+        // need to parseInt as passengerID is a numerical String
         return Integer.compare(Integer.parseInt(this.passengerId), Integer.parseInt(otherPassenger.passengerId));
     }
 

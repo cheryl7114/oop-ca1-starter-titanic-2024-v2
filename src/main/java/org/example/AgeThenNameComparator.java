@@ -11,5 +11,4 @@ public class AgeThenNameComparator implements Comparator<Passenger> {
         }
         return ageComparison;
     }
-
 }
